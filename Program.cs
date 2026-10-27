@@ -118,18 +118,14 @@ namespace CountDivisibleNumbers
                 {
                     Console.Write(" Test number " + (q + 1) + " = ");
                     p[q] = long.Parse(Console.ReadLine());
-
-                    if (!s.Contains(p[q]))
-                        s.Add(p[q]);
+                    s.Add(p[q]);
                 }
 
-                p = s.ToArray();
                 Console.WriteLine();
                 Console.WriteLine("-------------------------------------------------");
 
-                Array.Sort(p);
-                Array.Reverse(p);
-                p = FilterDivisible(p);
+                p = s.ToArray();
+                p = DivisibilityHelper.FilterDuplicatesAndDivisible(p);
 
                 long totalCount = n - m + 1;
 
@@ -156,19 +152,19 @@ namespace CountDivisibleNumbers
                 Console.WriteLine("=== 1. ORIGINALNI ALGORITAM ===");
                 Console.WriteLine(" Divisible count     : " + x1);
                 Console.WriteLine(" Not divisible count : " + y1);
-                Console.WriteLine(" Vreme izvršavanja   : " + sw1.ElapsedMilliseconds + " ms");
+                Console.WriteLine(" Vreme izvršavanja   : " + sw1.Elapsed);
 
                 Console.WriteLine();
                 Console.WriteLine("=== 2. MEMOIZED ALGORITAM ===");
                 Console.WriteLine(" Divisible count     : " + x2);
                 Console.WriteLine(" Not divisible count : " + y2);
-                Console.WriteLine(" Vreme izvršavanja   : " + sw2.ElapsedMilliseconds + " ms");
+                Console.WriteLine(" Vreme izvršavanja   : " + sw2.Elapsed);
 
                 Console.WriteLine();
                 Console.WriteLine("=== 3. LINQ ALGORITAM ===");
                 Console.WriteLine(" Divisible count     : " + x3);
                 Console.WriteLine(" Not divisible count : " + y3);
-                Console.WriteLine(" Vreme izvršavanja   : " + sw3.ElapsedMilliseconds + " ms");
+                Console.WriteLine(" Vreme izvršavanja   : " + sw3.Elapsed);
                 Console.WriteLine("-------------------------------------------------");
 
                 Console.WriteLine();
@@ -180,39 +176,5 @@ namespace CountDivisibleNumbers
             }
         }
 
-        /// <summary>
-        /// Filters out redundant test divisors to optimize the inclusion-exclusion calculation.
-        /// </summary>
-        /// <remarks>
-        /// Since each additional divisor doubles the number of recursive branches (2^k complexity), 
-        /// having redundant numbers (e.g., both 2 and 4) creates unnecessary overhead. 
-        /// This method detects and removes multiples (subordinate divisors), drastically 
-        /// speeding up all algorithms and preventing redundant computations.
-        /// </remarks>
-        /// <param name="p">The raw array of test numbers.</param>
-        /// <returns>A filtered array containing only independent base divisors.</returns>
-        static long[] FilterDivisible(long[] p)
-        {
-            List<long> q = new List<long>();
-            int k = 0;
-            long[] tempP = (long[])p.Clone();
-
-            foreach (long e in tempP)
-            {
-                for (int i = k + 1; i < tempP.Length; i++)
-                {
-                    if (tempP[k] != 0 && tempP[i] != 0 && tempP[k] % tempP[i] == 0)
-                    {
-                        tempP[k] = 0;
-                        break;
-                    }
-                }
-                if (tempP[k] != 0)
-                    q.Add(e);
-                k++;
-            }
-
-            return q.ToArray();
-        }
     }
 }
