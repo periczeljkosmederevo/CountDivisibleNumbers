@@ -7,7 +7,7 @@ namespace CountDivisibleNumbers
     public class DivisibilityBenchmark
     {
         // We can define different ranges for n using [Params]
-        [Params(1_000_000L, 1_000_000_000_000L)]
+        [Params(1_000_000L, 1_000_000_000_000_000L)]
         public long N { get; set; }
 
         private long _m;
@@ -18,7 +18,7 @@ namespace CountDivisibleNumbers
         {
             _m = 1;
             // Test array of 10 numbers (or more as needed)
-            _p = new long[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 27 };
+            _p = new long[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 31 };
         }
 
         [Benchmark(Baseline = true)]
