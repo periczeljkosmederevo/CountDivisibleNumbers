@@ -168,7 +168,7 @@ namespace CountDivisibleNumbers
                 Console.WriteLine("-------------------------------------------------");
 
                 Console.WriteLine();
-                var summary = BenchmarkRunner.Run<DivisibilityBenchmark>();
+               // var summary = BenchmarkRunner.Run<DivisibilityBenchmark>();
                 Console.WriteLine();
 
                 Console.Write(" Another Test [Y/N] ");
