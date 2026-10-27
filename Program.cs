@@ -1,71 +1,69 @@
 ﻿/************************************************************************
- * Program Licence :                                                    *
- *                                                                      *
- * Copyright © 13.1.2018 , Perić Željko                                 *
- * (periczeljkosmederevo@yahoo.com)                                     *
- *                                                                      *
- * According to it's main purpose , this program is licensed            *
- * under the therms of 'Free Software' licence agreement.               *
- *                                                                      *
- * If You do not know what those therms applies to                      *
- * please read explanation at the following link :                      *
- * (http://www.gnu.org/philosophy/free-sw.html.en)                      *
- *                                                                      *
- * Since it is Free Software this program has no warranty of any kind.  *
+- Program Licence :                                                    *
+-                                                                      *
+- Copyright © 13.1.2018 , Perić Željko                                 *
+- (periczeljkosmederevo@yahoo.com)                                     *
+-                                                                      *
+- According to it's main purpose , this program is licensed            *
+- under the therms of 'Free Software' licence agreement.               *
+-                                                                      *
+- If You do not know what those therms applies to                      *
+- please read explanation at the following link :                      *
+- (http://www.gnu.org/philosophy/free-sw.html.en)                      *
+-                                                                      *
+- Since it is Free Software this program has no warranty of any kind.  *
  ************************************************************************
- * Ethical Notice :                                                     *
- *                                                                      *
- * It is not ethical to change program code signed by it's author       *
- * and then to redistribute it under the same author name ,             *
- * especially if it is incorrect.                                       *
- *                                                                      *
- * It is recommended that if You make improvement in program code ,     *
- * to make remarks of it and then to sign it with Your own name ,       *
- * for further redistribution as new major version of program.          *
- *                                                                      *
- * Author name and references of old program code version should be     *
- * kept , for tracking history of program development.                  *
- *                                                                      *
- * For any further information please contact code author at his email. *
+- Ethical Notice :                                                     *
+-                                                                      *
+- It is not ethical to change program code signed by it's author       *
+- and then to redistribute it under the same author name ,             *
+- especially if it is incorrect.                                       *
+-                                                                      *
+- It is recommended that if You make improvement in program code ,     *
+- to make remarks of it and then to sign it with Your own name ,       *
+- for further redistribution as new major version of program.          *
+-                                                                      *
+- Author name and references of old program code version should be     *
+- kept , for tracking history of program development.                  *
+-                                                                      *
+- For any further information please contact code author at his email. *
  ************************************************************************/
-
 /***************************************
- * List Of Revisions                   *
+- List Of Revisions                   *
  ***************************************
- * 13.01.2018 : Version 1.0            *
- *              Initial release        *
- *              of recursive counter   *
- *              by Perić Željko.       *
- *              (Free Software)        *
- *                                     *
- * 27.10.2026   Major revision         *
- *              Upgraded for .NET,     *
- *              extended support to    *
- *              long data types, and   *
- *              added Memoized and     *
- *              Linq implementations   *
- *              for benchmarking.      *
- *              New version 2.0        *
+- 13.01.2018 : Version 1.0            *
+-              Initial release        *
+-              of recursive counter   *
+-              by Perić Željko.       *
+-              (Free Software)        *
+-                                     *
+- 27.10.2026   Major revision         *
+-              Upgraded for .NET,     *
+-              extended support to    *
+-              long data types, and   *
+-              added Memoized and     *
+-              Linq implementations   *
+-              for benchmarking.      *
+-              New version 2.0        *
  ***************************************/
-
 /*************************************************************************
- * Program name  : Count divisible numbers                               *
- * Program ver.  : 2.0                                                   *
- * Created by    : SharpDevelop                                          *
- * Updated by    : Visual Studio 2026                                    *
- * Code author   : Perić Željko                                          *
- * Code language : C#                                                    *
- * Date created  : 13.1.2018                                             *
- * Time created  : 9:27                                                  *
- * Last updated : 27.10.2026                                             *
- * Time updated : 19:15                                                  *
- *                                                                       *
- * Program Description : Program counts how many numbers in a selected   *
- *                       range [1-n] are divisible by any of             *
- *                       given test numbers                              *
- *                                                 All th best,          *
- *                                                 Author                *
- *                                                                       *
+- Program name  : Count divisible numbers                               *
+- Program ver.  : 2.0                                                   *
+- Created by    : SharpDevelop                                          *
+- Updated by    : Visual Studio 2026                                    *
+- Code author   : Perić Željko                                          *
+- Code language : C#                                                    *
+- Date created  : 13.1.2018                                             *
+- Time created  : 9:27                                                  *
+- Last updated : 27.10.2026                                             *
+- Time updated : 19:15                                                  *
+-                                                                       *
+- Program Description : Program counts how many numbers in a selected   *
+-                       range [1-n] are divisible by any of             *
+-                       given test numbers                              *
+-                                                 All the best,         *
+-                                                 Author                *
+-                                                                       *
  *************************************************************************/
 
 using BenchmarkDotNet.Running;
@@ -176,11 +174,23 @@ namespace CountDivisibleNumbers
                 Console.WriteLine();
                 var summary = BenchmarkRunner.Run<DivisibilityBenchmark>();
                 Console.WriteLine();
+
                 Console.Write(" Another Test [Y/N] ");
                 answer = Console.ReadKey(true);
             }
         }
 
+        /// <summary>
+        /// Filters out redundant test divisors to optimize the inclusion-exclusion calculation.
+        /// </summary>
+        /// <remarks>
+        /// Since each additional divisor doubles the number of recursive branches (2^k complexity), 
+        /// having redundant numbers (e.g., both 2 and 4) creates unnecessary overhead. 
+        /// This method detects and removes multiples (subordinate divisors), drastically 
+        /// speeding up all algorithms and preventing redundant computations.
+        /// </remarks>
+        /// <param name="p">The raw array of test numbers.</param>
+        /// <returns>A filtered array containing only independent base divisors.</returns>
         static long[] FilterDivisible(long[] p)
         {
             List<long> q = new List<long>();

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CountDivisibleNumbers
+﻿namespace CountDivisibleNumbers
 {
     /// <summary>
     /// Provides the original recursive implementation for counting numbers 
