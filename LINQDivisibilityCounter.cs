@@ -5,7 +5,7 @@
     /// divisible by any of the given test numbers within a range [m, n], 
     /// utilizing subset iteration and Least Common Multiple (LCM) calculations.
     /// </summary>
-    public static class LinqDivisibility
+    public static class LINQDivisibilityCounter
     {
         /// <summary>
         /// Calculates the count of numbers in the range [m, n] that are divisible 

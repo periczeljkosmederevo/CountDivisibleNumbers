@@ -24,19 +24,19 @@ namespace CountDivisibleNumbers
         [Benchmark(Baseline = true)]
         public long Original()
         {
-            return OriginalDivisibility.CalculateRange(_m, N, _p);
+            return OriginalDivisibilityCounter.CalculateRange(_m, N, _p);
         }
 
         [Benchmark]
         public long Memoized()
         {
-            return MemoizedOriginalDivisibility.CalculateRange(_m, N, _p);
+            return MemoizedOriginalDivisibilityCounter.CalculateRange(_m, N, _p);
         }
 
         [Benchmark]
         public long Linq()
         {
-            return LinqDivisibility.CalculateRange(_m, N, _p);
+            return LINQDivisibilityCounter.CalculateRange(_m, N, _p);
         }
     }
 }

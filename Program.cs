@@ -135,19 +135,19 @@ namespace CountDivisibleNumbers
 
                 // --- 1. TESTIRANJE STAROG ALGORITMA ---
                 var sw1 = Stopwatch.StartNew();
-                long x1 = OriginalDivisibility.CalculateRange(m, n, p);
+                long x1 = OriginalDivisibilityCounter.CalculateRange(m, n, p);
                 sw1.Stop();
                 long y1 = totalCount - x1;
 
                 // --- 2. TESTIRANJE MEMOIZED ALGORITMA ---
                 var sw2 = Stopwatch.StartNew();
-                long x2 = MemoizedOriginalDivisibility.CalculateRange(m, n, p);
+                long x2 = MemoizedOriginalDivisibilityCounter.CalculateRange(m, n, p);
                 sw2.Stop();
                 long y2 = totalCount - x2;
 
                 // --- 3. TESTIRANJE LINQ ALGORITMA ---
                 var sw3 = Stopwatch.StartNew();
-                long x3 = LinqDivisibility.CalculateRange(m, n, p);
+                long x3 = LINQDivisibilityCounter.CalculateRange(m, n, p);
                 sw3.Stop();
                 long y3 = totalCount - x3;
 
