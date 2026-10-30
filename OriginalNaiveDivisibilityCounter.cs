@@ -6,7 +6,7 @@ namespace CountDivisibleNumbers
     /// Provides the original naive (brute-force) implementation featured in the article's introduction,
     /// using a linear loop and modulo checks to count divisible numbers.
     /// </summary>
-    public static class OriginalNaiveDivisibility
+    public static class OriginalNaiveDivisibilityCounter
     {
         /// <summary>
         /// Calculates the count of numbers in the range [m, n] that are divisible 

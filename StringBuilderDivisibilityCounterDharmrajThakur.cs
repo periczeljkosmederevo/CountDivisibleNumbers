@@ -7,7 +7,7 @@ namespace CountDivisibleNumbers
     /// divisible by any of the given test numbers within a range [m, n]. 
     /// Useful as a baseline reference for correctness verification and small-scale testing.
     /// </summary>
-    public static class StringBuilderDivisibilityCounter
+    public static class StringBuilderDivisibilityCounterDharmrajThakur
     {
         /// <summary>
         /// Calculates the count of numbers in the range [m, n] that are divisible 

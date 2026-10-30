@@ -41,8 +41,8 @@
 -              Upgraded for .NET,     *
 -              extended support to    *
 -              long data types, and   *
--              added Memoized and     *
--              Linq implementations   *
+-              added Memoized, LINQ,  *
+-              and Brute-Force classes*
 -              for benchmarking.      *
 -              New version 2.0        *
  ***************************************/
@@ -129,7 +129,7 @@ namespace CountDivisibleNumbers
 
                 long totalCount = n - m + 1;
 
-                // --- 1. TESTIRANJE STAROG ALGORITMA ---
+                // --- 1. TESTIRANJE ORIGINALnog REKURZIVNOG ALGORITMA ---
                 var sw1 = Stopwatch.StartNew();
                 long x1 = OriginalDivisibilityCounter.CalculateRange(m, n, p);
                 sw1.Stop();
@@ -141,40 +141,65 @@ namespace CountDivisibleNumbers
                 sw2.Stop();
                 long y2 = totalCount - x2;
 
-                // --- 3. TESTIRANJE LINQ ALGORITMA ---
+                // --- 3. TESTIRANJE LINQ BITMASK ALGORITMA ---
                 var sw3 = Stopwatch.StartNew();
                 long x3 = LINQDivisibilityCounter.CalculateRange(m, n, p);
                 sw3.Stop();
                 long y3 = totalCount - x3;
 
+                // --- 4. TESTIRANJE ORIGINALNE NAIVNE PETLJE (ČLANAK) ---
+                // Preporuka: Koristiti samo za manje opsege zbog performansi
+                var sw4 = Stopwatch.StartNew();
+                long x4 = OriginalNaiveDivisibilityCounter.CalculateRange(m, n, p);
+                sw4.Stop();
+                long y4 = totalCount - x4;
+
+                // --- 5. TESTIRANJE OPTIMIZOVANOG LINEAR SCAN ALGORITMA ---
+                var sw5 = Stopwatch.StartNew();
+                long x5 = StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(m, n, p);
+                sw5.Stop();
+                long y5 = totalCount - x5;
+
                 // --- PRIKAZ REZULTATA ---
                 Console.WriteLine();
-                Console.WriteLine("=== 1. ORIGINALNI ALGORITAM ===");
+                Console.WriteLine("=== 1. ORIGINALNI REKURZIVNI ALGORITAM ===");
                 Console.WriteLine(" Divisible count     : " + x1);
                 Console.WriteLine(" Not divisible count : " + y1);
                 Console.WriteLine(" Vreme izvršavanja   : " + sw1.Elapsed);
 
                 Console.WriteLine();
-                Console.WriteLine("=== 2. MEMOIZED ALGORITAM ===");
+                Console.WriteLine("=== 2. MEMOIZED REKURZIVNI ALGORITAM ===");
                 Console.WriteLine(" Divisible count     : " + x2);
                 Console.WriteLine(" Not divisible count : " + y2);
                 Console.WriteLine(" Vreme izvršavanja   : " + sw2.Elapsed);
 
                 Console.WriteLine();
-                Console.WriteLine("=== 3. LINQ ALGORITAM ===");
+                Console.WriteLine("=== 3. LINQ BITMASK ALGORITAM ===");
                 Console.WriteLine(" Divisible count     : " + x3);
                 Console.WriteLine(" Not divisible count : " + y3);
                 Console.WriteLine(" Vreme izvršavanja   : " + sw3.Elapsed);
+
+                Console.WriteLine();
+                Console.WriteLine("=== 4. ORIGINALNI NAIVNI ALGORITAM (ČLANAK) ===");
+                Console.WriteLine(" Divisible count     : " + x4);
+                Console.WriteLine(" Not divisible count : " + y4);
+                Console.WriteLine(" Vreme izvršavanja   : " + sw4.Elapsed);
+
+                Console.WriteLine();
+                Console.WriteLine("=== 5. String Builder ALGORITAM Dharmraj Thakur ===");
+                Console.WriteLine(" Divisible count     : " + x5);
+                Console.WriteLine(" Not divisible count : " + y5);
+                Console.WriteLine(" Vreme izvršavanja   : " + sw5.Elapsed);
                 Console.WriteLine("-------------------------------------------------");
 
                 Console.WriteLine();
-               // var summary = BenchmarkRunner.Run<DivisibilityBenchmark>();
+                //Uncomment to run BenchmarkDotNet tests:
+                var summary = BenchmarkRunner.Run<DivisibilityBenchmark>();
                 Console.WriteLine();
 
                 Console.Write(" Another Test [Y/N] ");
                 answer = Console.ReadKey(true);
             }
         }
-
     }
 }
