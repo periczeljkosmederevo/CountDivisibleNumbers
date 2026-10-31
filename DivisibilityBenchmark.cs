@@ -35,27 +35,40 @@ namespace CountDivisibleNumbers
         }
 
         [Benchmark]
-        public long Linq()
+        public long Ultra()
         {
-            return LINQDivisibilityCounter.CalculateRange(_m, N, _p);
+            return UltraOptimizedDivisibilityCounter.CalculateRange(_m, N, _p);
         }
 
         [Benchmark]
-        public long NaiveArticle()
+        public long UltraV2()
         {
-            // Brute-force is too slow for massive numbers, skip for N > 1,000,000
-            if (N > 1_000_000L)
-                return -1;
-            return OriginalNaiveDivisibilityCounter.CalculateRange(_m, N, _p);
+            return UltraOptimizedDivisibilityCounterV2.CalculateRange(_m, N, _p);
         }
 
-        [Benchmark]
-        public long StringBuilder()
-        {
-            // Brute-force is too slow for massive numbers, skip for N > 1,000,000
-            if (N > 1_000_000L)
-                return -1;
-            return StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(_m, N, _p);
-        }
+
+        //[Benchmark]
+        //public long Linq()
+        //{
+        //    return LINQDivisibilityCounter.CalculateRange(_m, N, _p);
+        //}
+
+        //[Benchmark]
+        //public long NaiveArticle()
+        //{
+        //    // Brute-force is too slow for massive numbers, skip for N > 1,000,000
+        //    if (N > 1_000_000L)
+        //        return -1;
+        //    return OriginalNaiveDivisibilityCounter.CalculateRange(_m, N, _p);
+        //}
+
+        //[Benchmark]
+        //public long StringBuilder()
+        //{
+        //    // Brute-force is too slow for massive numbers, skip for N > 1,000,000
+        //    if (N > 1_000_000L)
+        //        return -1;
+        //    return StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(_m, N, _p);
+        //}
     }
 }

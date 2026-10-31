@@ -160,6 +160,19 @@ namespace CountDivisibleNumbers
                 sw5.Stop();
                 long y5 = totalCount - x5;
 
+                // --- 6. TESTIRANJE ULTRA OPTIMIZOVANOG ALGORITMA ---
+                var sw6 = Stopwatch.StartNew();
+                long x6 = StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(m, n, p);
+                sw6.Stop();
+                long y6 = totalCount - x6;
+
+                // --- 6. TESTIRANJE ULTRA V2 OPTIMIZOVANOG ALGORITMA ---
+                var sw7 = Stopwatch.StartNew();
+                long x7 = UltraOptimizedDivisibilityCounterV2.CalculateRange(m, n, p);
+                sw7.Stop();
+                long y7 = totalCount - x7;
+
+
                 // --- PRIKAZ REZULTATA ---
                 Console.WriteLine();
                 Console.WriteLine("=== 1. ORIGINALNI REKURZIVNI ALGORITAM ===");
@@ -191,6 +204,21 @@ namespace CountDivisibleNumbers
                 Console.WriteLine(" Not divisible count : " + y5);
                 Console.WriteLine(" Vreme izvršavanja   : " + sw5.Elapsed);
                 Console.WriteLine("-------------------------------------------------");
+
+                Console.WriteLine();
+                Console.WriteLine("=== 6. ULTRA OPTIMIZOVAN ALGORITAM ===");
+                Console.WriteLine(" Divisible count     : " + x6);
+                Console.WriteLine(" Not divisible count : " + y6);
+                Console.WriteLine(" Vreme izvršavanja   : " + sw6.Elapsed);
+                Console.WriteLine("-------------------------------------------------");
+
+                Console.WriteLine();
+                Console.WriteLine("=== 7. ULTRA OPTIMIZOVAN V2 ALGORITAM ===");
+                Console.WriteLine(" Divisible count     : " + x7);
+                Console.WriteLine(" Not divisible count : " + y7);
+                Console.WriteLine(" Vreme izvršavanja   : " + sw7.Elapsed);
+                Console.WriteLine("-------------------------------------------------");
+
 
                 Console.WriteLine();
                 //Uncomment to run BenchmarkDotNet tests:
