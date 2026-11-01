@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Text;
-
-namespace CountDivisibleNumbers.Algorithms
+﻿namespace CountDivisibleNumbers.Algorithms
 {
     /// <summary>
     /// Provides an optimized bit-masking implementation of the Inclusion-Exclusion Principle 

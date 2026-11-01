@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CountDivisibleNumbers.Algorithms
+﻿namespace CountDivisibleNumbers.Algorithms
 {
     /// <summary>
     /// Provides an optimized memoized version of the original recursive divisibility algorithm,

@@ -70,8 +70,6 @@ using BenchmarkDotNet.Running;
 using CountDivisibleNumbers.Algorithms;
 using CountDivisibleNumbers.Benchmark;
 using CountDivisibleNumbers.Helpers;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace CountDivisibleNumbers

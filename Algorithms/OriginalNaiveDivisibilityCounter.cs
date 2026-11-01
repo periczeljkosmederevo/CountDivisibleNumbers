@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CountDivisibleNumbers.Algorithms
+﻿namespace CountDivisibleNumbers.Algorithms
 {
     /// <summary>
     /// Provides the original naive (brute-force) implementation featured in the article's introduction,

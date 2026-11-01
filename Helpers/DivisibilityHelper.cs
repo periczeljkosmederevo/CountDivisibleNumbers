@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace CountDivisibleNumbers.Helpers
+﻿namespace CountDivisibleNumbers.Helpers
 {
     /// <summary>
     /// Provides helper utilities for processing and preparing test divisors 

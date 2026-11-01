@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CountDivisibleNumbers.Algorithms
+﻿namespace CountDivisibleNumbers.Algorithms
 {
     /// <summary>
     /// Provides an optimized recursive implementation of the divisibility counting algorithm
