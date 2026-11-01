@@ -45,7 +45,7 @@ namespace CountDivisibleNumbers.Tests
                 VerifyAlgorithm("2. Memoized Recursive", MemoizedOriginalDivisibilityCounter.CalculateRange(test.M, test.N, filteredP), expectedCount);
                 VerifyAlgorithm("3. LINQ Bitmask", LINQDivisibilityCounter.CalculateRange(test.M, test.N, filteredP), expectedCount);
                 VerifyAlgorithm("4. Original Naive", expectedCount, expectedCount); // Self-test
-                VerifyAlgorithm("5. StringBuilder (Thakur)", StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(test.M, test.N, filteredP), expectedCount);
+                VerifyAlgorithm("5. StringBuilder (Dharmraj Thakur)", StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(test.M, test.N, filteredP), expectedCount);
                 VerifyAlgorithm("6. Ultra Optimized (CollectionsMarshal)", UltraOptimizedDivisibilityCounter.CalculateRange(test.M, test.N, filteredP), expectedCount);
                 VerifyAlgorithm("7. Ultra Optimized V2 (Int128)", UltraOptimizedDivisibilityCounterV2.CalculateRange(test.M, test.N, filteredP), expectedCount);
                 VerifyAlgorithm("8. BitMask (Arun Potti)", BitMaskDivisibilityCounterArunPotti.CalculateRange(test.M, test.N, filteredP), expectedCount);
