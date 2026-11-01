@@ -7,6 +7,8 @@ namespace CountDivisibleNumbers.Algorithms
     /// Provides an optimized bit-masking implementation of the Inclusion-Exclusion Principle 
     /// for counting and finding numbers divisible by any of the given test numbers within a range [m, n]. 
     /// Avoids array allocations and recursion by iterating over all prime combinations using bit masks.
+    /// <para>Original algorithm concept and contribution by Arun Potti:</para>
+    /// <para>https://www.c-sharpcorner.com/members/arun-potti3</para>
     /// </summary>
     public static class BitMaskDivisibilityCounterArunPotti
     {
