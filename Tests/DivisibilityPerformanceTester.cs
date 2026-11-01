@@ -43,7 +43,7 @@ namespace CountDivisibleNumbers.Tests
                 new { Name = "2. Memoized Recursive", Func = new Func<long>(() => MemoizedOriginalDivisibilityCounter.CalculateRange(m, n, p)) },
                 new { Name = "3. LINQ Bitmask", Func = new Func<long>(() => LINQDivisibilityCounter.CalculateRange(m, n, p)) },
                 new { Name = "4. Original Naive (Article)", Func = new Func<long>(() => OriginalNaiveDivisibilityCounter.CalculateRange(m, n, p)) },
-                new { Name = "5. StringBuilder (Thakur)", Func = new Func<long>(() => StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(m, n, p)) },
+                new { Name = "5. StringBuilder (Dharmraj Thakur)", Func = new Func<long>(() => StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(m, n, p)) },
                 new { Name = "6. Ultra Optimized", Func = new Func<long>(() => UltraOptimizedDivisibilityCounter.CalculateRange(m, n, p)) },
                 new { Name = "7. Ultra Optimized V2", Func = new Func<long>(() => UltraOptimizedDivisibilityCounterV2.CalculateRange(m, n, p)) },
                 new { Name = "8. BitMask (Arun Potti)", Func = new Func<long>(() => BitMaskDivisibilityCounterArunPotti.CalculateRange(m, n, p)) }
