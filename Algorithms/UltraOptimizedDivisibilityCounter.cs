@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace CountDivisibleNumbers.Algorithms
 {
@@ -27,11 +30,14 @@ namespace CountDivisibleNumbers.Algorithms
         /// </remarks>
         public static long CalculateRange(long m, long n, long[] p)
         {
-            _memo.Clear();
-            long countN = Compute(n, p, 0);
-            _memo.Clear();
-            long countM1 = Compute(m - 1, p, 0);
-            return countN - countM1;
+            if (n <= 0 || m > n || p == null || p.Length == 0)
+                return 0;
+
+            long countN = Calculate(n, p);
+            long lower = m <= 1 ? 0 : m - 1;
+            long countLower = Calculate(lower, p);
+
+            return countN - countLower;
         }
 
         /// <summary>
@@ -42,8 +48,12 @@ namespace CountDivisibleNumbers.Algorithms
         /// <returns>The count of divisible numbers in the range from 1 to n.</returns>
         public static long Calculate(long n, long[] p)
         {
+            if (n <= 0 || p == null || p.Length == 0)
+                return 0;
+
+            var sortedP = p.OrderBy(x => x).ToArray();
             _memo.Clear();
-            return Compute(n, p, 0);
+            return Compute(n, sortedP, 0);
         }
 
         /// <summary>
@@ -62,7 +72,7 @@ namespace CountDivisibleNumbers.Algorithms
         /// </remarks>
         private static long Compute(long n, long[] p, int index)
         {
-            if (index >= p.Length)
+            if (index >= p.Length || n <= 0)
                 return 0;
 
             var key = (n, index);

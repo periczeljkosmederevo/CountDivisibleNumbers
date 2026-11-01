@@ -1,4 +1,7 @@
-﻿namespace CountDivisibleNumbers.Algorithms
+﻿using System;
+using System.Linq;
+
+namespace CountDivisibleNumbers.Algorithms
 {
     /// <summary>
     /// Provides an optimized recursive implementation of the divisibility counting algorithm
@@ -36,14 +39,15 @@
         /// </remarks>
         public static long CalculateRange(long m, long n, long[] p)
         {
-            if (m > n || n < 1 || p.Length == 0)
+            if (m > n || n < 1 || p == null || p.Length == 0)
                 return 0;
 
             long lower = m <= 1 ? 0 : m - 1;
+            var sortedP = p.OrderBy(x => x).ToArray();
 
             Int128 result = 0;
 
-            Accumulate(n, lower, p, 0, 1, true, ref result);
+            Accumulate(n, lower, sortedP, 0, 1, true, ref result);
 
             return checked((long)result);
         }
