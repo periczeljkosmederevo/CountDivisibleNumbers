@@ -1,32 +1,32 @@
 ﻿/************************************************************************
-* Program Licence :                                                    *
-*                                                                      *
-* Copyright © 13.1.2018 , Perić Željko                                 *
-* (periczeljkosmederevo@yahoo.com)                                     *
-*                                                                      *
-* According to its main purpose, this program is licensed              *
-* under the terms of 'Free Software' licence agreement.                *
-*                                                                      *
-* If You do not know what those terms apply to                         *
-* please read explanation at the following link :                      *
-* (http://www.gnu.org/philosophy/free-sw.html.en)                      *
-*                                                                      *
-* Since it is Free Software this program has no warranty of any kind.  *
+* Program Licence :                                                     *
+*                                                                       *
+* Copyright © 13.1.2018 , Perić Željko                                  *
+* (periczeljkosmederevo@yahoo.com)                                      *
+*                                                                       *
+* According to its main purpose, this program is licensed               *
+* under the terms of 'Free Software' licence agreement.                 *
+*                                                                       *
+* If You do not know what those terms apply to                          *
+* please read explanation at the following link :                       *
+* (http://www.gnu.org/philosophy/free-sw.html.en)                       *
+*                                                                       *
+* Since it is Free Software this program has no warranty of any kind.   *
  ************************************************************************
-* Ethical Notice :                                                     *
-*                                                                      *
-* It is not ethical to change program code signed by its author        *
-* and then to redistribute it under the same author name,              *
-* especially if it is incorrect.                                       *
-*                                                                      *
-* It is recommended that if You make improvement in program code,      *
-* to make remarks of it and then to sign it with Your own name,        *
-* for further redistribution as new major version of program.          *
-*                                                                      *
-* Author name and references of old program code version should be     *
-* kept, for tracking history of program development.                   *
-*                                                                      *
-* For any further information please contact code author at his email. *
+* Ethical Notice :                                                      *
+*                                                                       *
+* It is not ethical to change program code signed by its author         *
+* and then to redistribute it under the same author name,               *
+* especially if it is incorrect.                                        *
+*                                                                       *
+* It is recommended that if You make improvement in program code,       *
+* to make remarks of it and then to sign it with Your own name,         *
+* for further redistribution as new major version of program.           *
+*                                                                       *
+* Author name and references of old program code version should be      *
+* kept, for tracking history of program development.                    *
+*                                                                       *
+* For any further information please contact code author at his email.  *
  ************************************************************************/
 /***************************************
 * List Of Revisions                    *
@@ -70,6 +70,9 @@ using BenchmarkDotNet.Running;
 using CountDivisibleNumbers.Algorithms;
 using CountDivisibleNumbers.Benchmark;
 using CountDivisibleNumbers.Helpers;
+using CountDivisibleNumbers.Tests;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace CountDivisibleNumbers
@@ -78,6 +81,7 @@ namespace CountDivisibleNumbers
     {
         public static void Main()
         {
+            #region Console Initialization & Styling
             Console.Title = "Count divisible numbers by any of given numbers (Multi-Algorithm Benchmark)";
 
             try
@@ -86,9 +90,30 @@ namespace CountDivisibleNumbers
                 Console.ForegroundColor = ConsoleColor.Green;
             }
             catch { }
+            #endregion
+
+            #region Automated Correctness Verification
+            // Run correctness verification tests for all algorithms before starting user input
+            try
+            {
+                DivisibilityVerificationTests.RunAllTests();
+                Console.WriteLine();
+                Console.WriteLine("Press any key to proceed to interactive execution...");
+                Console.ReadKey(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"[ERROR] Correctness test failed: {ex.Message}");
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadKey(true);
+                return;
+            }
+            #endregion
 
             ConsoleKeyInfo answer = new ConsoleKeyInfo('Y', ConsoleKey.Y, true, true, true);
 
+            #region Interactive Execution Loop
             while (answer.Key == ConsoleKey.Y)
             {
                 Console.Clear();
@@ -132,6 +157,7 @@ namespace CountDivisibleNumbers
 
                 long totalCount = n - m + 1;
 
+                #region Algorithm Execution & Timing
                 // --- 1. ORIGINAL RECURSIVE ALGORITHM ---
                 var sw1 = Stopwatch.StartNew();
                 long x1 = OriginalDivisibilityCounter.CalculateRange(m, n, p);
@@ -179,8 +205,9 @@ namespace CountDivisibleNumbers
                 long x8 = BitMaskDivisibilityCounterArunPotti.CalculateRange(m, n, p);
                 sw8.Stop();
                 long y8 = totalCount - x8;
+                #endregion
 
-                // --- DISPLAY RESULTS ---
+                #region Results Display
                 Console.WriteLine();
                 Console.WriteLine("=== 1. ORIGINAL RECURSIVE ALGORITHM ===");
                 Console.WriteLine(" Divisible count     : " + x1);
@@ -229,15 +256,17 @@ namespace CountDivisibleNumbers
                 Console.WriteLine(" Not divisible count : " + y8);
                 Console.WriteLine(" Execution time      : " + sw8.Elapsed);
                 Console.WriteLine("-------------------------------------------------");
+                #endregion
 
                 Console.WriteLine();
                 // Uncomment to run BenchmarkDotNet tests:
-                var summary = BenchmarkRunner.Run<DivisibilityBenchmark>();
+                // var summary = BenchmarkRunner.Run<DivisibilityBenchmark>();
                 Console.WriteLine();
 
                 Console.Write(" Another Test [Y/N] ");
                 answer = Console.ReadKey(true);
             }
+            #endregion
         }
     }
 }
