@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace CountDivisibleNumbers.Algorithms
 {
@@ -6,6 +7,8 @@ namespace CountDivisibleNumbers.Algorithms
     /// Provides a brute-force (linear scan) implementation for counting and finding numbers 
     /// divisible by any of the given test numbers within a range [m, n]. 
     /// Useful as a baseline reference for correctness verification and small-scale testing.
+    /// <para>Original algorithm concept and contribution by Dharmraj Thakur:</para>
+    /// <para>https://www.c-sharpcorner.com/members/dharmraj-thakur</para>
     /// </summary>
     public static class StringBuilderDivisibilityCounterDharmrajThakur
     {
