@@ -49,7 +49,7 @@ namespace CountDivisibleNumbers.Benchmark
         }
 
         [Benchmark]
-        public long BitMaskPotti()
+        public long BitMaskArunPotti()
         {
             return BitMaskDivisibilityCounterArunPotti.CalculateRange(_m, N, _p);
         }
@@ -70,7 +70,7 @@ namespace CountDivisibleNumbers.Benchmark
         }
 
         [Benchmark]
-        public long StringBuilderThakur()
+        public long StringBuilderDharmrajThakur()
         {
             // Brute-force is too slow for massive numbers, skip for N > 1,000,000
             if (N > 1_000_000L)
