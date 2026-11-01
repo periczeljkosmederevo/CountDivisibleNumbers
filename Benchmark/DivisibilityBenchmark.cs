@@ -1,13 +1,15 @@
 ﻿using BenchmarkDotNet.Attributes;
+using CountDivisibleNumbers.Algorithms;
+using CountDivisibleNumbers.Helpers;
 
-namespace CountDivisibleNumbers
+namespace CountDivisibleNumbers.Benchmark
 {
     [MemoryDiagnoser] // Tracks memory allocation and Garbage Collector activity
     [RPlotExporter]   // Generates graphical reports (optional)
     public class DivisibilityBenchmark
     {
         // We can define different ranges for n using [Params]
-        [Params(1_000L, 1_000_000L, 1_000_000_000_000_000L)]
+        [Params(1_000L, 1_000_000L)]//, 1_000_000_000_000_000L)]
         public long N { get; set; }
 
         private long _m;
@@ -46,29 +48,34 @@ namespace CountDivisibleNumbers
             return UltraOptimizedDivisibilityCounterV2.CalculateRange(_m, N, _p);
         }
 
+        [Benchmark]
+        public long BitMaskPotti()
+        {
+            return BitMaskDivisibilityCounterArunPotti.CalculateRange(_m, N, _p);
+        }
 
-        //[Benchmark]
-        //public long Linq()
-        //{
-        //    return LINQDivisibilityCounter.CalculateRange(_m, N, _p);
-        //}
+        [Benchmark]
+        public long Linq()
+        {
+            return LINQDivisibilityCounter.CalculateRange(_m, N, _p);
+        }
 
-        //[Benchmark]
-        //public long NaiveArticle()
-        //{
-        //    // Brute-force is too slow for massive numbers, skip for N > 1,000,000
-        //    if (N > 1_000_000L)
-        //        return -1;
-        //    return OriginalNaiveDivisibilityCounter.CalculateRange(_m, N, _p);
-        //}
+        [Benchmark]
+        public long NaiveArticle()
+        {
+            // Brute-force is too slow for massive numbers, skip for N > 1,000,000
+            if (N > 1_000_000L)
+                return -1;
+            return OriginalNaiveDivisibilityCounter.CalculateRange(_m, N, _p);
+        }
 
-        //[Benchmark]
-        //public long StringBuilder()
-        //{
-        //    // Brute-force is too slow for massive numbers, skip for N > 1,000,000
-        //    if (N > 1_000_000L)
-        //        return -1;
-        //    return StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(_m, N, _p);
-        //}
+        [Benchmark]
+        public long StringBuilder()
+        {
+            // Brute-force is too slow for massive numbers, skip for N > 1,000,000
+            if (N > 1_000_000L)
+                return -1;
+            return StringBuilderDivisibilityCounterDharmrajThakur.CalculateRange(_m, N, _p);
+        }
     }
 }

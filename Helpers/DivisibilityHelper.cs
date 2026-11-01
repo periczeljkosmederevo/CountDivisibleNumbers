@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CountDivisibleNumbers
+namespace CountDivisibleNumbers.Helpers
 {
     /// <summary>
     /// Provides helper utilities for processing and preparing test divisors 

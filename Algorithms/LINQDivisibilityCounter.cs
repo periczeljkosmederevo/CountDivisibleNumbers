@@ -1,4 +1,4 @@
-﻿namespace CountDivisibleNumbers
+﻿namespace CountDivisibleNumbers.Algorithms
 {
     /// <summary>
     /// Provides a LINQ and bitmask-based implementation for counting numbers 

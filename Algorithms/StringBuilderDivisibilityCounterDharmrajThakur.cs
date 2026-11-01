@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace CountDivisibleNumbers
+namespace CountDivisibleNumbers.Algorithms
 {
     /// <summary>
     /// Provides a brute-force (linear scan) implementation for counting and finding numbers 
