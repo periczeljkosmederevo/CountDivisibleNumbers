@@ -70,7 +70,7 @@ namespace CountDivisibleNumbers.Benchmark
         }
 
         [Benchmark]
-        public long StringBuilder()
+        public long StringBuilderThakur()
         {
             // Brute-force is too slow for massive numbers, skip for N > 1,000,000
             if (N > 1_000_000L)
